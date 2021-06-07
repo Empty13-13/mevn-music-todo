@@ -1,8 +1,18 @@
 module.exports = {
   routes: [
-    'sets',
-    'songs',
+    'budget',
+    'song',
     'genre',
-    'place',
+    'locations',
+    'calendar',
+    'chat',
+    'concert',
+    'eventDay',
+    'notification',
+    'repetition',
+    'rulLevel',
+    'setList',
+    'songDescription',
+    'user',
   ],
 };

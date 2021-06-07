@@ -1,6 +1,6 @@
 const genericCrud = require("./generic.controller");
-const { Place } = require("../model");
+const { locations } = require("../model");
 
 module.exports = {
-  ...genericCrud(Place),
+  ...genericCrud(locations),
 };

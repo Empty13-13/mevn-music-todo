@@ -1,6 +1,6 @@
 const genericCrud = require("./generic.controller");
-const { Set } = require("../model");
+const { calendar } = require("../model");
 
 module.exports = {
-  ...genericCrud(Set),
+  ...genericCrud(calendar),
 };

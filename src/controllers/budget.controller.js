@@ -1,6 +1,6 @@
 const genericCrud = require("./generic.controller");
-const { Author } = require("../model");
+const { budget } = require("../model");
 
 module.exports = {
-  ...genericCrud(Author),
+  ...genericCrud(budget),
 };

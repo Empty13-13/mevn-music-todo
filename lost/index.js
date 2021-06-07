@@ -1,9 +1,9 @@
 // Песни
-const Song = require('./song');
-const Genre = require('./genre');
-const Author = require('./author');
-const Sets = require('./set');
-const Place = require('./place');
+const somg = require('./song');
+const genre = require('./genre');
+const budget = require('');
+const setList = require('./set');
+const locations = require('./place');
 
 module.exports = {
   Song, Genre, Author, Sets, Place,

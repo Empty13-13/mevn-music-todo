@@ -1,6 +1,6 @@
 const genericCrud = require("./generic.controller");
-const { genre } = require("../model");
+const { chat } = require("../model");
 
 module.exports = {
-  ...genericCrud(genre),
+   ...genericCrud(chat),
 };
