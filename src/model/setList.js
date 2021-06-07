@@ -5,21 +5,21 @@ const schema = new Schema({
       type: String,
       default: '',
    },
-   login: {
+   timeUse: {
       type: String,
       default: '',
    },
-   password: {
+   overUse: {
       type: String,
       default: '',
    },
-   rulLevel: {
+   locations: {
       type: ObjectId,
-      ref: 'rulLevel',
+      ref: 'locations',
    },
-   imgUrl: {
-      type: String,
-      default: '',
+   song: {
+      type: [ObjectId],
+      ref: 'song',
    },
 })
-module.exports = model('user', schema);
+module.exports = model('setList', schema);

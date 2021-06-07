@@ -5,21 +5,13 @@ const schema = new Schema({
       type: String,
       default: '',
    },
-   login: {
+   adress: {
       type: String,
       default: '',
    },
-   password: {
-      type: String,
-      default: '',
-   },
-   rulLevel: {
-      type: ObjectId,
-      ref: 'rulLevel',
-   },
-   imgUrl: {
+   event: {
       type: String,
       default: '',
    },
 })
-module.exports = model('user', schema);
+module.exports = model('locations', schema);

@@ -6,4 +6,4 @@ const schema = new Schema({
       default: '',
    },
 })
-module.exports = model('genre', schema);
+module.exports = model('budget', schema);

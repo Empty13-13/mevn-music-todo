@@ -1,25 +1,21 @@
 const { model, Schema, Schema: { Types: { ObjectId } } } = require('mongoose');
 
 const schema = new Schema({
-   title: {
+   day: {
       type: String,
       default: '',
    },
-   login: {
+   time: {
       type: String,
       default: '',
    },
-   password: {
+   text: {
       type: String,
       default: '',
    },
-   rulLevel: {
+   user: {
       type: ObjectId,
-      ref: 'rulLevel',
-   },
-   imgUrl: {
-      type: String,
-      default: '',
+      ref: 'user',
    },
 })
-module.exports = model('user', schema);
+module.exports = model('chat', schema);

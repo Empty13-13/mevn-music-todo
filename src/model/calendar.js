@@ -1,25 +1,21 @@
 const { model, Schema, Schema: { Types: { ObjectId } } } = require('mongoose');
 
 const schema = new Schema({
-   author: {
-      type: String,
-      default: '',
-   },
    title: {
       type: String,
       default: '',
    },
-   text: {
-      type: String,
-      default: '',
-   },
-   user: {
+   concert: {
       type: [ObjectId],
-      ref: 'user',
+      ref: 'concert',
    },
-   genre: {
+   repetition: {
+      type: ObjectId,
+      ref: 'repetition',
+   },
+   eventDay: {
       type: [ObjectId],
-      ref: 'genre',
+      ref: 'enevtDay',
    },
 })
-module.exports = model('song', schema);
+module.exports = model('calendar', schema);
