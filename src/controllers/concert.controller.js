@@ -1,7 +1,7 @@
 const genericCrud = require("./generic.controller");
-const { song } = require("../model");
+const { concert } = require("../model");
 
 
 module.exports = {
-  ...genericCrud(song),
+  ...genericCrud(concert),
 };
