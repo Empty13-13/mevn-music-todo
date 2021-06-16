@@ -1,9 +1,10 @@
 const { model, Schema, Schema: { Types: { ObjectId } } } = require('mongoose');
 
 const schema = new Schema({
-  title: {
+  value: {
     type: String,
-    default: '',
+    unique: true,
+    default: 'USER',
   },
 });
 module.exports = model('rulLevel', schema);

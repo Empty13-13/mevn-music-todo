@@ -13,11 +13,11 @@ const schema = new Schema({
     type: String,
     default: '',
   },
-  locations: {
+  location: {
     type: ObjectId,
     ref: 'locations',
   },
-  song: {
+  songs: {
     type: [ObjectId],
     ref: 'song',
   },

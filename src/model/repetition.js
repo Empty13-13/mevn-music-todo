@@ -5,11 +5,7 @@ const schema = new Schema({
     type: String,
     default: '',
   },
-  calendar: {
-    type: ObjectId,
-    ref: 'calendar',
-  },
-  locations: {
+  location: {
     type: ObjectId,
     ref: 'locations',
   },

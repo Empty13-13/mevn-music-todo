@@ -3,6 +3,7 @@ const { model, Schema, Schema: { Types: { ObjectId } } } = require('mongoose');
 const schema = new Schema({
   title: {
     type: String,
+    unique: true,
     default: '',
   },
   concert: {
@@ -10,7 +11,7 @@ const schema = new Schema({
     ref: 'concert',
   },
   repetition: {
-    type: ObjectId,
+    type: [ObjectId],
     ref: 'repetition',
   },
   eventDay: {

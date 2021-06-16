@@ -1,13 +1,10 @@
 const { model, Schema } = require('mongoose');
 
 const schema = new Schema({
-  title: {
+  name: {
     type: String,
-    default: '',
-  },
-  adress: {
-    type: String,
+    unique: true,
     default: '',
   },
 });
-module.exports = model('locations', schema);
+module.exports = model('Author', schema);

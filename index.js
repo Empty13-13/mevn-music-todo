@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,7 +10,7 @@ const {
 
 //! настройка подключения к бд
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.dgpcm.mongodb.net/hack?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO_URL, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -18,9 +19,7 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.dgpcm.mongodb.net/hack?retr
 //! инициализация приложения
 const app = express();
 app.use(cors());
-
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 routes.forEach((item) => {

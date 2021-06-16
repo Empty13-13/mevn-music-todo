@@ -5,9 +5,9 @@ const schema = new Schema({
     type: String,
     default: '',
   },
-  calendar: {
-    type: ObjectId,
-    ref: 'calendar',
+  text: {
+    type: String,
+    default: 'Дело',
   },
   user: {
     type: ObjectId,

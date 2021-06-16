@@ -1,8 +1,6 @@
 const genericCrud = require("./generic.controller");
-const { rulLevel } = require("../model");
-
-
+const { author } = require("../model");
 
 module.exports = {
-  ...genericCrud(rulLevel),
+  ...genericCrud(author),
 };

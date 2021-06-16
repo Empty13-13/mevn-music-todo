@@ -13,6 +13,7 @@ module.exports = {
     'rulLevel',
     'setList',
     'songDescription',
-    'user',
+    'author',
+    'auth',
   ],
 };

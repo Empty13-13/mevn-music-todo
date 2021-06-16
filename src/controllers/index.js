@@ -10,9 +10,24 @@ const notification = require('./notification.controller');
 const repetition = require('./repetition.controller');
 const rulLevel = require('./rulLevel.controller');
 const songDescription = require('./songDescription.controller');
-const user = require('./user.controller');
 const concert = require('./concert.controller');
+const author = require('./author.controller');
+const auth = require('./auth.controller');
 
 module.exports = {
-  song, setList, budget, genre, locations, chat, calendar, eventDay, notification, repetition, rulLevel, songDescription, user, concert,
+  song,
+  setList,
+  budget,
+  genre,
+  locations,
+  chat,
+  calendar,
+  eventDay,
+  notification,
+  repetition,
+  rulLevel,
+  songDescription,
+  concert,
+  author,
+  auth,
 };

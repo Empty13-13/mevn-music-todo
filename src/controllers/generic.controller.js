@@ -12,6 +12,14 @@ const genericCrud = (model, {
       return res.status(400).send(boom.boomify(err));
     }
   },
+	async getByTitle({ params: { title } }, res) {
+    try {
+      const item = await model.findOne({title: title});
+      return res.status(200).send(item);
+    } catch (err) {
+      return res.status(400).send(boom.boomify(err));
+    }
+  },
   async getAll(_, res) {
     try {
       const items = await model.find().populate(getAll);
@@ -20,6 +28,7 @@ const genericCrud = (model, {
       return res.status(400).send(boom.boomify(err));
     }
   },
+
   async create({ body }, res) {
     // title: Contrlo
     try {

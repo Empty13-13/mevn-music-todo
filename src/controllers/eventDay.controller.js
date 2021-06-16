@@ -1,6 +1,6 @@
 const genericCrud = require("./generic.controller");
-const { calendar } = require("../model");
+const { eventDay } = require("../model");
 
 module.exports = {
-  ...genericCrud(calendar),
+  ...genericCrud(eventDay),
 };

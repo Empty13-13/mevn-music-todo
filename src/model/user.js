@@ -1,25 +1,9 @@
-const { model, Schema, Schema: { Types: { ObjectId } } } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const schema = new Schema({
-  title: {
-    type: String,
-    default: '',
-  },
-  login: {
-    type: String,
-    default: '',
-  },
-  password: {
-    type: String,
-    default: '',
-  },
-  rulLevel: {
-    type: ObjectId,
-    ref: 'rulLevel',
-  },
-  imgUrl: {
-    type: String,
-    default: '',
-  },
+const User = new Schema({
+  username: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  rulLevel: [{ type: String, ref: 'rulLevel' }],
 });
-module.exports = model('user', schema);
+
+module.exports = model('User', User);
