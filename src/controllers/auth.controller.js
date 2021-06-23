@@ -2,8 +2,9 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken')
 const { User, rulLevel, Token } = require ('../model')
 const bcrypt = require('bcryptjs');
+const { body } = require('express-validator');
 
-const generateAccessToken = (id, rulLevel, secret = process.env.JWT_SECRET, minut = "1m") => {
+const generateAccessToken = (id, rulLevel, secret = process.env.JWT_SECRET, minut = "1h") => {
 	const payload = {
 			id,
 			rulLevel
@@ -12,44 +13,49 @@ const generateAccessToken = (id, rulLevel, secret = process.env.JWT_SECRET, minu
 }
 
 module.exports = {
-	async login({body: {username, password}},res){
+	async login({body:{username, password}},res){
 		try {
 			const user = await User.findOne({username})
+
 			if(!user){
-				return res.status(400).json({message: `Пользователь ${username} не найден`})
+				return res.status(401).send({message: `Пользователь ${username} не найден`})
 			}
 			const validPassword = bcrypt.compareSync(password, user.password)
 			if (!validPassword) {
-					return res.status(400).json({message: `Введен неверный пароль`})
+					return res.status(401).send({message: `Введен неверный пароль`})
 			}
-			const accesToken = generateAccessToken(user._id, user.rulLevel)
-			const refreshToken = generateAccessToken(user._id, user.rulLevel,process.env.JWT_SECRET_REFRESH,"24h")
+			const accessToken = generateAccessToken(user._id, user.rulLevel)
+			const refreshToken = generateAccessToken(user._id, user.rulLevel,process.env.JWT_SECRET_REFRESH,"30d")
+
 
 			const foundToken = await Token.findOne({
 				user: user._id
 			})
 
 			if(foundToken){
+
 				await Token.findByIdAndUpdate(foundToken._id, { token: refreshToken})
-				return res.status(200).json({
-					accesToken,
+				return res.status(200).send({
+					accessToken,
 					refreshToken,
       	  username: user.username,
 					rulLevel: user.rulLevel,
+					id: user._id,
 				})
 			}
 
 			const item = new Token({ token: refreshToken, user: user._id});
 			await item.save();
 
-			return res.status(200).json({
-				accesToken,
+			return res.status(200).send({
+				accessToken,
 				refreshToken,
         username: user.username,
 				rulLevel: user.rulLevel,
+				id: user._id,
 			})
 		} catch (error) {
-			return res.status(403).send({
+			return res.status(401).send({
 				message:"Извините, но логин или пароль не подходят!",
 				error
 			})
@@ -64,7 +70,7 @@ module.exports = {
 			}
 
 			const hashPassword = bcrypt.hashSync(password, 7);
-			const userRole = await rulLevel.findOne({value: "USER"})
+			const userRole = await rulLevel.findOne({value: "ADMIN"})
 			const user = new User({username, password: hashPassword, rulLevel: [userRole.value]})
 			await user.save()
 			return res.json({message: "Пользователь успешно зарегистрирован"})
@@ -124,10 +130,24 @@ module.exports = {
 
       return res.status(200).send({
         accessToken,
-        email: user.email
+				id: user.id,
+				rulLevel: user.rulLevel,
       })
 
     })
   },
+	verifyAccessToken({body: { accessToken }},res){
+		jwt.verify(accessToken, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        return res.status(403).send({
+          message: 'Действие запрещено'
+        })
+      }
+      return res.status(200).send({
+        id: user.id
+      })
+
+    })
+	}
 
 }

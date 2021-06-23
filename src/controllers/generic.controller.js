@@ -51,7 +51,7 @@ const genericCrud = (model, {
   async delete({ params: { id } }, res) {
     try {
       await model.findByIdAndDelete(id);
-      return res.status(200).send({ status: "OK", message: "Продукт удален" });
+      return res.status(200).send({ status: "OK", message: "Объект удален" });
     } catch (err) {
       return res.status(400).send(boom.boomify(err));
     }

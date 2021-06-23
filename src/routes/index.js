@@ -15,5 +15,6 @@ module.exports = {
     'songDescription',
     'author',
     'auth',
+    'user',
   ],
 };

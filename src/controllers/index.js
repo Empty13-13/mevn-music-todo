@@ -12,6 +12,7 @@ const rulLevel = require('./rulLevel.controller');
 const songDescription = require('./songDescription.controller');
 const concert = require('./concert.controller');
 const author = require('./author.controller');
+const user = require('./user.controller');
 const auth = require('./auth.controller');
 
 module.exports = {
@@ -30,4 +31,5 @@ module.exports = {
   concert,
   author,
   auth,
+  user,
 };
